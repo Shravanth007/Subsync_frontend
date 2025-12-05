@@ -15,15 +15,21 @@ SubSync is a Chrome extension that syncs with your ChatGPT or Claude conversatio
 ## 🖼️ Screenshots
 
 ### ChatGPT Integration
-![ChatGPT Screenshot](https://raw.githubusercontent.com/Shravanth007/Subsync/main/frontend/screenshots/chatgpt-integration.png)
+![ChatGPT Screenshot]<img width="1671" height="924" alt="Screenshot 2025-12-05 160927" src="https://github.com/user-attachments/assets/982e9ddb-7a56-4f02-8e7a-848ef6315851" />
+
+
 *SubSync sidebar seamlessly integrates with ChatGPT, allowing you to ask questions about the conversation without disrupting the main chat.*
 
 ### Claude Integration
-![Claude Screenshot](https://raw.githubusercontent.com/Shravanth007/Subsync/main/frontend/screenshots/claude-integration.png)
+![Claude Screenshot]<img width="1912" height="930" alt="Screenshot 2025-12-05 160824" src="https://github.com/user-attachments/assets/72492d9e-5bb7-4d80-bbdb-76f77af93f33" />
+
+
 *Works perfectly with Claude AI as well, maintaining the same intuitive experience across platforms.*
 
 ### Extension Settings
-![Extension Popup](https://raw.githubusercontent.com/Shravanth007/Subsync/main/frontend/screenshots/extension-popup.png)
+![Extension Popup]<img width="457" height="740" alt="Screenshot 2025-12-05 160942" src="https://github.com/user-attachments/assets/b76f51e7-af2d-4ea9-828a-78346adae9e5" />
+
+
 *Configure your API keys, check backend status, and manage settings from the extension popup. The "Active" badge shows your backend connection status.*
 
 ## 🚀 Installation
