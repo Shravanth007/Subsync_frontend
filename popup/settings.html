@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>SubSync Settings</title>
+  <link rel="stylesheet" href="../styles/popup.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body { width: 450px; padding: 20px; }
+    .settings-section { margin-bottom: 24px; }
+    .settings-label { 
+      display: block; 
+      margin-bottom: 8px; 
+      font-weight: 500; 
+      font-size: 14px;
+      color: var(--text-main);
+    }
+    .settings-input { 
+      width: 100%; 
+      padding: 10px 12px; 
+      border: 1px solid var(--border-subtle); 
+      border-radius: 8px; 
+      font-size: 14px;
+      background: var(--bg-input);
+      color: var(--text-main);
+      font-family: 'Monaco', 'Consolas', monospace;
+    }
+    .settings-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px var(--primary-light);
+    }
+    .settings-help {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 500;
+      cursor: pointer;
+      width: 100%;
+      transition: all 0.2s;
+    }
+    .btn-primary:hover {
+      background: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+    .status-message {
+      padding: 12px;
+      border-radius: 8px;
+      margin-top: 16px;
+      font-size: 14px;
+      text-align: center;
+    }
+    .status-success {
+      background: var(--success-bg);
+      color: var(--success);
+      border: 1px solid var(--success-border);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo-area">
+        <div class="logo-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M12 1v6m0 6v6m8.66-15.66l-4.24 4.24M9.17 14.83l-4.24 4.24M23 12h-6m-6 0H1m20.66 8.66l-4.24-4.24M9.17 9.17L4.93 4.93"></path>
+          </svg>
+        </div>
+        <h1>Settings</h1>
+      </div>
+    </header>
+
+    <main>
+      <div class="settings-section">
+        <label class="settings-label" for="backendUrl">Backend URL</label>
+        <input 
+          type="text" 
+          id="backendUrl" 
+          class="settings-input" 
+          placeholder="http://localhost:8000"
+        />
+        <div class="settings-help">The URL where your SubSync backend is running</div>
+      </div>
+
+      <div class="settings-section">
+        <label class="settings-label" for="apiKey">API Key (Optional)</label>
+        <input 
+          type="password" 
+          id="apiKey" 
+          class="settings-input" 
+          placeholder="Enter your API key"
+        />
+        <div class="settings-help">Leave empty if your backend doesn't require authentication</div>
+      </div>
+
+      <button id="saveBtn" class="btn-primary">Save Settings</button>
+      
+      <div id="statusMessage" style="display: none;"></div>
+    </main>
+  </div>
+  <script src="settings.js"></script>
+</body>
+</html>

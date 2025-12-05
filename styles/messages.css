@@ -1,0 +1,136 @@
+.subsync-message {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  animation: slideInMessage 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  max-width: 85%;
+}
+
+@keyframes slideInMessage {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.subsync-message-user {
+  align-self: flex-end;
+  align-items: flex-end;
+}
+
+.subsync-message-assistant {
+  align-self: flex-start;
+  align-items: flex-start;
+}
+
+.subsync-message-bubble {
+  padding: 12px 16px;
+  border-radius: 18px;
+  line-height: 1.5;
+  font-size: 14px;
+  word-wrap: break-word;
+  position: relative;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.subsync-message-user .subsync-message-bubble {
+  background: #1e3a8a !important;
+  /* Blue */
+  color: white !important;
+  border-bottom-right-radius: 4px;
+}
+
+.subsync-message-assistant .subsync-message-bubble {
+  background: #1e3a8a !important;
+  /* Blue to match user */
+  color: white !important;
+  border: none;
+  border-bottom-left-radius: 4px;
+}
+
+.subsync-message-label {
+  font-size: 11px;
+  color: #9ca3af;
+  margin: 0 4px;
+  font-weight: 500;
+}
+
+.subsync-context-badge {
+  align-self: center;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: rgba(30, 58, 138, 0.2);
+  border: 1px solid rgba(30, 58, 138, 0.4);
+  border-radius: 20px;
+  font-size: 12px;
+  color: #93c5fd;
+  margin-bottom: 16px;
+  max-width: 90%;
+}
+
+.subsync-context-badge svg {
+  flex-shrink: 0;
+  opacity: 0.8;
+}
+
+.subsync-loading {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+}
+
+.subsync-loading-dot {
+  width: 6px;
+  height: 6px;
+  background: white;
+  border-radius: 50%;
+  animation: bounce 1.4s infinite ease-in-out both;
+  opacity: 0.8;
+}
+
+.subsync-loading-dot:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.subsync-loading-dot:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+@keyframes bounce {
+
+  0%,
+  80%,
+  100% {
+    transform: scale(0);
+  }
+
+  40% {
+    transform: scale(1);
+  }
+}
+
+.subsync-message-bubble strong {
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.subsync-message-bubble em {
+  font-style: italic;
+  color: #e0e7ff;
+}
+
+.subsync-message-bubble code {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 13px;
+  color: #ddd6fe;
+}

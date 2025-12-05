@@ -1,0 +1,63 @@
+{
+  "manifest_version": 3,
+  "name": "SubSync",
+  "version": "5.0.0",
+  "description": "Keeps your chat synced and allows you to ask doubts separately, without affecting the main conversation.",
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "https://chat.openai.com/*",
+    "https://chatgpt.com/*",
+    "https://claude.ai/*",
+    "https://subsync-backend.vercel.app/*",
+    "https://openrouter.ai/*",
+    "https://ai.megallm.io/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://chat.openai.com/*",
+        "https://chatgpt.com/*",
+        "https://claude.ai/*"
+      ],
+      "js": [
+        "apiConfig.js",
+        "modules/config.js",
+        "modules/state.js",
+        "modules/platform.js",
+        "modules/storage.js",
+        "modules/api.js",
+        "modules/scraper.js",
+        "modules/monitoring.js",
+        "modules/syncButton.js",
+        "modules/ui.js",
+        "content.js"
+      ],
+      "css": [
+        "styles/button.css",
+        "styles/sidebar.css",
+        "styles/messages.css",
+        "styles/input.css"
+      ],
+      "run_at": "document_end"
+    }
+  ],
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
