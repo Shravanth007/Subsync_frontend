@@ -16,22 +16,22 @@ SubSync is a Chrome extension that syncs with your ChatGPT or Claude conversatio
 ## 🖼️ Screenshots
 
 ### ChatGPT Integration
-<img width="1670" height="922" alt="image" src="https://github.com/user-attachments/assets/3c50862c-5ad8-419b-9629-b8b879bef885" />
+![ChatGPT Integration](assets/GPT.png)
 
 *SubSync sidebar seamlessly integrates with ChatGPT, allowing you to ask questions about the conversation without disrupting the main chat.*
 
 ### Claude Integration
-<img width="1862" height="915" alt="image" src="https://github.com/user-attachments/assets/25770693-e429-4216-b5ee-2ac09493bcd2" />
+![Claude Integration](assets/Claude.png)
 
 *Works perfectly with Claude AI as well, maintaining the same intuitive experience across platforms.*
 
 ### Extension Settings
-<img width="572" height="1005" alt="image" src="https://github.com/user-attachments/assets/3f61f511-8dad-4202-965c-5f149f6cd018" />
+![Extension Settings](assets/extensionSettings.png)
 
 *Configure your API keys, check backend status, and manage settings from the extension popup. The "Active" badge shows your backend connection status.*
 
 ### Conversation view
-<img width="448" height="930" alt="image" src="https://github.com/user-attachments/assets/ab120dc6-f808-4adb-9789-8926d1a4e4ea" />  <img width="451" height="934" alt="image" src="https://github.com/user-attachments/assets/7412c0a2-d845-47dc-966b-18be6fe76184" />
+![Conversation View 1](assets/conversationview1.png)  ![Conversation View 2](assets/conversationview2.png)
 
 
 
