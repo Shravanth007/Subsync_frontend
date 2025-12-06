@@ -140,10 +140,6 @@ const ConversationScraper = {
       contextStr += `${msg.role.toUpperCase()}: ${msg.content}\n\n`;
     });
     
-    if (messages.length === 0) {
-      console.warn('SubSync: No messages scraped from conversation');
-    }
-    
     return contextStr || 'No conversation found.';
   },
 

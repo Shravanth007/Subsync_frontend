@@ -12,6 +12,9 @@
     "https://chatgpt.com/*",
     "https://claude.ai/*",
     "https://subsync-backend.vercel.app/*",
+    "https://api.openai.com/*",
+    "https://api.anthropic.com/*",
+    "https://generativelanguage.googleapis.com/*",
     "https://openrouter.ai/*",
     "https://ai.megallm.io/*"
   ],

@@ -14,9 +14,10 @@ const Config = {
     }
     
     return new Promise((resolve) => {
-      chrome.storage.sync.get(['apiKey', 'modelName'], (result) => {
+      chrome.storage.sync.get(['apiKey', 'modelName', 'backendUrl'], (result) => {
         this.API_KEY = (result.apiKey || '').trim();
         this.MODEL_NAME = (result.modelName || '').trim();
+        this.BACKEND_URL = (result.backendUrl || this.BACKEND_URL).trim();
         this._initialized = true;
         resolve();
       });
@@ -49,6 +50,9 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.type === 'CONFIG_UPDATED') {
     Config.API_KEY = (message.apiKey || '').trim();
     Config.MODEL_NAME = (message.modelName || '').trim();
+    if (message.backendUrl) {
+      Config.BACKEND_URL = message.backendUrl.trim();
+    }
   }
 });
 

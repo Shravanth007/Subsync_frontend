@@ -4,32 +4,68 @@ const UIComponents = {
     div.textContent = text;
     let html = div.innerHTML;
     
-    html = html.replace(/\*\*\*(.+?)\*\*\*/g, '<strong><em>$1</em></strong>');
-    html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
-    html = html.replace(/\*(.+?)\*/g, '<em>$1</em>');
-    html = html.replace(/`(.+?)`/g, '<code>$1</code>');
+    html = html.replace(/^### (.+)$/gm, '<h3 class="subsync-h3">$1</h3>');
+    html = html.replace(/^## (.+)$/gm, '<h2 class="subsync-h2">$1</h2>');
+    html = html.replace(/^# (.+)$/gm, '<h1 class="subsync-h1">$1</h1>');
+    
+    html = html.replace(/^(\d+)\. (.+)$/gm, '<li class="subsync-list-item" data-num="$1">$2</li>');
+    
+    html = html.replace(/^- (.+)$/gm, '<li class="subsync-bullet-item">$1</li>');
+    
+    html = html.replace(/\*\*\*([^\*]+)\*\*\*/g, '<strong><em>$1</em></strong>');
+    html = html.replace(/\*\*([^\*]+)\*\*/g, '<strong>$1</strong>');
+    html = html.replace(/\*([^\*\n]+)\*/g, '<em>$1</em>');
+    html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
+    
+    html = html.replace(/(<li class="subsync-list-item"[^>]*>.+?<\/li>\s*)+/g, '<ol class="subsync-ordered-list">$&</ol>');
+    html = html.replace(/(<li class="subsync-bullet-item">.+?<\/li>\s*)+/g, '<ul class="subsync-bullet-list">$&</ul>');
+    
     html = html.replace(/\n/g, '<br>');
     
     return html;
   },
 
+  async checkBackendStatus() {
+    try {
+      const backendUrl = 'https://subsync-backend.vercel.app';
+      const response = await fetch(`${backendUrl}/health`, {
+        method: 'GET',
+        signal: AbortSignal.timeout(3000)
+      });
+      return response.ok;
+    } catch (error) {
+      return false;
+    }
+  },
+
   createSidebar() {
     if (AppState.sidebar) return AppState.sidebar;
+
+    const welcomeMessages = [
+      "always listening, always ready—what's on your mind?",
+      "synced up and standing by. fire away!",
+      "ready when you are—drop a thought!",
+      "synced and sharp—what do we explore?",
+      "here in the background—ask away!",
+      "context secured—what's next?",
+      "always in sync—say the word!"
+    ];
+    
+    const randomMessage = welcomeMessages[Math.floor(Math.random() * welcomeMessages.length)];
 
     const sidebarDiv = document.createElement('div');
     sidebarDiv.id = 'subsync-sidebar';
     sidebarDiv.innerHTML = `
       <div class="subsync-sidebar-header">
-        <div class="subsync-sidebar-title">
-          <div class="subsync-logo-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="20 6 9 17 4 12"></polyline>
-            </svg>
+        <div class="subsync-header-left">
+          <div class="subsync-header-title">
+            <span class="subsync-title-text">SubSync</span>
+            <span class="subsync-title-separator"></span>
+            <span class="subsync-title-subtitle">AI Assistant</span>
           </div>
-          <span>SubSync</span>
         </div>
         <div class="subsync-header-actions">
-          <button id="subsync-new-chat" class="subsync-icon-btn" title="New conversation">
+          <button id="subsync-new-chat-header" class="subsync-icon-btn" title="New conversation">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M12 5v14M5 12h14"></path>
             </svg>
@@ -45,31 +81,26 @@ const UIComponents = {
       
       <div class="subsync-chat-container" id="subsync-chat-messages">
         <div class="subsync-empty-state">
-          <div class="subsync-empty-icon">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-            </svg>
-          </div>
-          <p class="subsync-empty-text">
-            Select text to start syncing
-          </p>
+          <div class="subsync-welcome-text">${randomMessage}</div>
         </div>
       </div>
 
       <div class="subsync-input-container">
         <div class="subsync-input-wrapper">
-          <textarea 
-            id="subsync-input" 
-            class="subsync-input" 
-            placeholder="Ask a question..."
-            rows="1"
-          ></textarea>
-          <button id="subsync-send" class="subsync-send-btn">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="22" y1="2" x2="11" y2="13"></line>
-              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-            </svg>
-          </button>
+          <div class="subsync-input-group">
+            <textarea 
+              id="subsync-input" 
+              class="subsync-input" 
+              placeholder="Ask a question..."
+              rows="1"
+            ></textarea>
+            <button id="subsync-send" class="subsync-send-btn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
     `;
@@ -84,15 +115,36 @@ const UIComponents = {
     return sidebarDiv;
   },
 
+  async updateBackendStatus() {
+    const statusDot = document.querySelector('.subsync-backend-dot');
+    const statusText = document.querySelector('.subsync-backend-text');
+    
+    if (!statusDot || !statusText) return;
+    
+    const isOnline = await this.checkBackendStatus();
+    
+    if (isOnline) {
+      statusDot.classList.add('online');
+      statusDot.classList.remove('offline');
+      statusText.textContent = 'Backend Live';
+    } else {
+      statusDot.classList.add('offline');
+      statusDot.classList.remove('online');
+      statusText.textContent = 'Backend Offline';
+    }
+  },
+
   attachSidebarListeners(sidebar) {
     const closeBtn = sidebar.querySelector('.subsync-sidebar-close');
     const sendBtn = sidebar.querySelector('#subsync-send');
-    const newChatBtn = sidebar.querySelector('#subsync-new-chat');
+    const newChatHeaderBtn = sidebar.querySelector('#subsync-new-chat-header');
     const input = sidebar.querySelector('#subsync-input');
 
     closeBtn.addEventListener('click', () => this.closeSidebar());
     sendBtn.addEventListener('click', () => this.sendMessage());
-    newChatBtn.addEventListener('click', () => this.handleNewConversation());
+    if (newChatHeaderBtn) {
+      newChatHeaderBtn.addEventListener('click', () => this.handleNewConversation());
+    }
 
     input.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' && !e.shiftKey) {
@@ -112,13 +164,21 @@ const UIComponents = {
     if (!container) return;
 
     if (AppState.chatMessages.length === 0) {
+      const welcomeMessages = [
+        "always listening, always ready—what's on your mind?",
+        "synced up and standing by. fire away!",
+        "ready when you are—drop a thought!",
+        "synced and sharp—what do we explore?",
+        "here in the background—ask away!",
+        "context secured—what's next?",
+        "always in sync—say the word!"
+      ];
+      
+      const randomMessage = welcomeMessages[Math.floor(Math.random() * welcomeMessages.length)];
+      
       container.innerHTML = `
         <div class="subsync-empty-state">
-          <div class="subsync-empty-icon">💬</div>
-          <div class="subsync-empty-text">
-            Ask questions about the selected text<br>
-            without disrupting your main conversation
-          </div>
+          <div class="subsync-welcome-text">${randomMessage}</div>
         </div>
       `;
       return;
@@ -193,8 +253,6 @@ const UIComponents = {
       StorageManager.saveConversationHistory();
 
     } catch (error) {
-      console.error('SubSync: Error sending message:', error);
-
       this.removeLoadingMessage();
 
       const errorMessage = Config.API_KEY 

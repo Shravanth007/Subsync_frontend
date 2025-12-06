@@ -59,13 +59,13 @@
         <div class="settings-content">
           <div class="form-group">
             <label>API Key (Optional)</label>
-            <input type="password" id="apiKeyInput" placeholder="Enter your OpenRouter/MegaLLM API key">
-            <p class="help-text">Provide your own API key to bypass backend (direct API calls)</p>
+            <input type="password" id="apiKeyInput" placeholder="Enter your API key">
+            <p class="help-text">Supports: OpenAI (sk-...), Anthropic/Claude (sk-ant-...), Gemini (AIzaSy...), OpenRouter (sk-or-...), or MegaLLM. Bypasses backend for direct API calls.</p>
           </div>
           <div class="form-group">
             <label>Model Name (Optional)</label>
-            <input type="text" id="modelNameInput" placeholder="e.g., openai/gpt-4o-mini">
-            <p class="help-text">Default: openai/gpt-4o-mini-2024-07-18 (OpenRouter) or openai-gpt-oss-20b (MegaLLM)</p>
+            <input type="text" id="modelNameInput" placeholder="e.g., gpt-4o-mini or openai/gpt-4o-mini">
+            <p class="help-text">Examples: gpt-4o-mini (OpenAI), claude-3-5-sonnet-20241022 (Anthropic), gemini-2.5-flash (Gemini), openai/gpt-4o-mini-2024-07-18 (OpenRouter)</p>
           </div>
           <button class="btn-primary" id="saveSettings">Save Configuration</button>
         </div>

@@ -21,7 +21,6 @@ const StorageManager = {
         }
       }
     } catch (e) {
-      console.error('SubSync: Error loading conversation history:', e);
     }
     return false;
   },
@@ -35,7 +34,6 @@ const StorageManager = {
       };
       localStorage.setItem(key, JSON.stringify(data));
     } catch (e) {
-      console.error('SubSync: Error saving conversation history:', e);
     }
   },
   
@@ -63,7 +61,6 @@ const StorageManager = {
         }
       });
     } catch (e) {
-      console.error('SubSync: Error during cleanup:', e);
     }
   },
   
